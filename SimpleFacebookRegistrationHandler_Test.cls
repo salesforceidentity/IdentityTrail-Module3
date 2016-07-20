@@ -1,8 +1,5 @@
 /**
   FaceBook Registration Handler example TEST
-  
-  @Author - Bobby White
-  @email bobby.white@salesforce.com
   @company  Salesforce
   
   @date  March 16, 2016
