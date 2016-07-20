@@ -50,9 +50,11 @@ global User createUser(Id portalId, Auth.UserData data){
         Id contactId;
         // To keep things modular, we're creating the Contact in a separate method
         contactId = createContact(data);
+        System.debug('Created contact: '+ contactId);
         
         // You'd likely use other logic to assign the Profile
         Profile p = [SELECT Id FROM profile WHERE name=:EXTERNAL_USER_PROFILE];
+        System.debug('Found profile: '+ p);
 
         // Keeping it modular, we initialize the user in another method
         User u = createUser(data,p);
@@ -61,7 +63,8 @@ global User createUser(Id portalId, Auth.UserData data){
         return u;
     } else {
         //This is not a community, so we Assign an internal profile
-        Profile p = [SELECT Id FROM profile WHERE name='Standard User'];
+        Profile p = [SELECT Id FROM profile WHERE name=:INTERNAL_USER_PROFILE];
+        System.debug('Found profile: '+ p);
         
         // Keeping it modular, we initialize the user in another method
         User u = createUser(data,p);
@@ -96,7 +99,7 @@ global void updateUser(Id userId, Id portalId, Auth.UserData data){
         contact.Email = data.email;
         
         // set Account Id
-        List<Account> accounts = [select Id from Account where Name =: DEFAULT_ACCOUNTNAME];
+        List<Account> accounts = [select Id from Account where Name =:DEFAULT_ACCOUNTNAME];
         System.debug('Found account: ' + accounts);
         contact.accountId = accounts[0].Id;
         
@@ -135,7 +138,5 @@ global void updateUser(Id userId, Id portalId, Auth.UserData data){
         u.timeZoneSidKey = 'America/Los_Angeles';
         u.profileId = p.Id;
         return u;
-    }
-    
-    
+    }        
 }
