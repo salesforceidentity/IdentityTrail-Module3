@@ -1,8 +1,6 @@
 /**
   FaceBook Registration Handler example TEST
-  @company  Salesforce
-  
-  @date  March 16, 2016
+
 **/ 
 @isTest
 public class SimpleFacebookRegistrationHandler_Test {
@@ -104,6 +102,12 @@ public class SimpleFacebookRegistrationHandler_Test {
         Test.startTest();
         String theCommunityId = '00000001';
         data.attributeMap.put('sfdc_networkid',theCommunityId);
+        
+        Account testAccount = new Account();
+        testAccount.Name = 'Test Account';
+        insert testAccount;
+        
+        data.attributeMap.put('accountId',testAccount.id);
         
         User theUser = handler.createUser(null, data);
         
