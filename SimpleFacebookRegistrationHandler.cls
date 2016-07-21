@@ -99,10 +99,14 @@ global void updateUser(Id userId, Id portalId, Auth.UserData data){
         contact.Email = data.email;
         
         // set Account Id
-        List<Account> accounts = [select Id from Account where Name =:DEFAULT_ACCOUNTNAME];
-        System.debug('Found account: ' + accounts);
-        contact.accountId = accounts[0].Id;
-        
+        if (data.attributemap.get('accountId') != null){
+            contact.accountId = data.attributemap.get('accountId');
+        } else {
+            List<Account> accounts = [select Id from Account where Name =:DEFAULT_ACCOUNTNAME];
+            System.debug('Found account: ' + accounts);
+            
+            contact.accountId = accounts[0].Id;            
+        }
         insert contact;
 
         System.debug('Contact created for ' + data.email + ' id=' + contact.id);
