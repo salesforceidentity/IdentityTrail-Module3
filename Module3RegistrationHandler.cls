@@ -4,8 +4,8 @@
 global class Module3RegistrationHandler implements Auth.RegistrationHandler{
     
     private static final String ORG_SUFFIX = '.sso.badge.org';
-    private static final String DEFAULT_ACCOUNTNAME = 'Customers';
-    private static final String EXTERNAL_USER_PROFILE = 'Customers';
+    private static final String DEFAULT_ACCOUNTNAME = 'Partners';
+    private static final String EXTERNAL_USER_PROFILE = 'Partners';
     private static final String INTERNAL_USER_PROFILE = 'Standard User';    
     
 /**
