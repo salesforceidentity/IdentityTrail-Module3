@@ -6,7 +6,8 @@ global class Module3RegistrationHandler implements Auth.RegistrationHandler{
     private static final String ORG_SUFFIX = '.sso.badge.org';
     private static final String DEFAULT_ACCOUNTNAME = 'Partners';
     private static final String EXTERNAL_USER_PROFILE = 'Partners';
-    private static final String INTERNAL_USER_PROFILE = 'Standard User';    
+    private static final String INTERNAL_USER_PROFILE = 'Standard User';  
+    private static final String TZSID = [SELECT timezonesidkey from User where profile.name = 'System Administrator' LIMIT 1].timezonesidkey;
     
 /**
  * Let anyone register as long as the required fields are supplied
@@ -159,7 +160,7 @@ global void updateUser(Id userId, Id portalId, Auth.UserData data){
         u.languagelocalekey = UserInfo.getLocale();
         u.localesidkey = UserInfo.getLocale();
         u.emailEncodingKey = 'UTF-8';
-        u.timeZoneSidKey = 'America/Los_Angeles';
+        u.timeZoneSidKey = TZSID;
         u.profileId = p.Id;
         return u;
     }        
