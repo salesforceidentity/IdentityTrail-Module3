@@ -136,7 +136,7 @@ global void updateUser(Id userId, Id portalId, Auth.UserData data){
             alias = alias.substring(0, 8);
         }
         u.alias = alias;
-        u.languagelocalekey = UserInfo.getLocale();
+        u.languagelocalekey = UserInfo.getLanguage();
         u.localesidkey = UserInfo.getLocale();
         u.emailEncodingKey = 'UTF-8';
         u.timeZoneSidKey = 'America/Los_Angeles';
